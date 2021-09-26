@@ -1,2 +1,4 @@
 # LudumDare49
-Game Made in 72 hours for Ludum Dare 49
+
+Play here:
+[itch.io](https://zachisagardner.itch.io/ludum-dare-49)
