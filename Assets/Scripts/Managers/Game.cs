@@ -11,7 +11,7 @@ public class Game : SingleInstance<Game>
     public static bool IsTransitioning = false;
     public static bool GotCowPart = false;
     public static bool GotButtonPart = false;
-    public static bool GotBossPart = false;
+    public static bool GotArtistPart = false;
 
     private Image cowPartImage;
     private Image bossPartImage;
@@ -44,20 +44,29 @@ public class Game : SingleInstance<Game>
 
         if (GotCowPart)
         {
-            cowPartImage = cowPartImage ?? GameObject.Find("PartOne").GetComponentInChildren<Image>();
-            cowPartImage.color = Color.white;
+            cowPartImage = cowPartImage ?? GameObject.Find("PartOne")?.GetComponentInChildren<Image>();
+            if (cowPartImage != null)
+            {
+                cowPartImage.color = Color.white;
+            }
         }
 
-        if (GotBossPart)
+        if (GotArtistPart)
         {
-            bossPartImage = bossPartImage ?? GameObject.Find("PartTwo").GetComponentInChildren<Image>();
-            bossPartImage.color = Color.white;
+            bossPartImage = bossPartImage ?? GameObject.Find("PartTwo")?.GetComponentInChildren<Image>();
+            if (bossPartImage != null)
+            {
+                bossPartImage.color = Color.white;
+            }
         }
 
         if (GotButtonPart)
         {
-            buttonPartImage = buttonPartImage ?? GameObject.Find("PartThree").GetComponentInChildren<Image>();
-            buttonPartImage.color = Color.white;
+            buttonPartImage = buttonPartImage ?? GameObject.Find("PartThree")?.GetComponentInChildren<Image>();
+            if (buttonPartImage != null)
+            {
+                buttonPartImage.color = Color.white;
+            }
         }
     }
 

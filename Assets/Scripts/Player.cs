@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {       
-        bool hit = Physics.Raycast(transform.position, Vector3.down, 1f, CollisionMask);
+        bool hit = Physics.Raycast(transform.position, Vector3.down, 2f, CollisionMask);
         if (hit)
         {
             thrustRegenerateCooldown = 0;

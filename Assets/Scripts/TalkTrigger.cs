@@ -7,6 +7,7 @@ using UnityEngine;
 public class TalkTrigger : MonoBehaviour
 {
     public Camera Camera;
+    public SceneTransition Fade;
 
     bool busy = false;
     RectTransform prompt;
@@ -92,6 +93,9 @@ public class TalkTrigger : MonoBehaviour
             case "Toe":
                 await Toe();
                 break;
+            case "Artist":
+                await Artist();
+                break;
             default:
                 await DefaultTalk();
                 break;
@@ -159,15 +163,13 @@ public class TalkTrigger : MonoBehaviour
         ));
 
         await Dialogue.Next(textBox, new TextBoxModel(
-            text: "Here take this countom cbaooo!",
+            text: "Here take this spacehip part!",
             speaker: "Cow Man"
         ));
 
-        await Dialogue.End(textBox, new TextBoxModel(
-           text: "(Got the spaceship part!)"
-       ));
-
         Game.GotCowPart = true;
+
+        await SpaceshipPart(textBox);
     }
 
     async Task CowExtra()
@@ -183,11 +185,60 @@ public class TalkTrigger : MonoBehaviour
         ));
     }
 
+    async Task Artist()
+    {
+        Paper paper = FindObjectOfType<Paper>();
+
+        if (paper.Pixels.Count() > 150 || Game.GotArtistPart)
+        {
+            TextBox textBox = await Dialogue.Begin(new TextBoxModel(
+                text: "Wow I love your drawing!",
+                speaker: "Fartist"
+            ));
+
+            await Dialogue.Next(textBox, new TextBoxModel(
+               text: "I just happen to have this cool thing. You can have it!",
+               speaker: "Fartist"
+           ));
+
+            Game.GotArtistPart = true;
+
+            await SpaceshipPart(textBox);
+        }
+        else
+        {
+            TextBox textBox = await Dialogue.Begin(new TextBoxModel(
+                text: "Hello! I love drawing!",
+                speaker: "Fartist"
+            ));
+
+            await Dialogue.End(textBox, new TextBoxModel(
+                text: "Do you think you could make me a drawing?",
+                speaker: "Fartist"
+            ));
+        }
+    }
+
     async Task Spaceship()
     {
-        await Dialogue.Single(new TextBoxModel(
-            text: $"Looks like you are missing some spaceship parts."
-        ));
+        if (Game.GotArtistPart && Game.GotButtonPart && Game.GotCowPart)
+        {
+            var textbox = await Dialogue.Begin(new TextBoxModel(
+                text: $"(The spaceship is impressed by the parts you have collected.)"
+            ));
+
+            await Dialogue.End(textbox, new TextBoxModel(
+                text: $"(It feels like flying again!)"
+            ));
+
+            _ = Game.LoadAsync("End", Fade);
+        }
+        else
+        {
+            await Dialogue.Single(new TextBoxModel(
+                text: $"Looks like you are missing some spaceship parts."
+            ));
+        }
     }
 
     int toePart = 0;
@@ -205,16 +256,19 @@ public class TalkTrigger : MonoBehaviour
                 ));
 
                 await Dialogue.Next(textbox, new TextBoxModel(
-                    text: "I will need some time.",
+                    text: "I will need some time to be alone.",
                     speaker: "Stupidius"
                 ));
 
-                await Dialogue.End(textbox, new TextBoxModel(
-                    text: "(You got the spaceship part!)"
+                await Dialogue.Next(textbox, new TextBoxModel(
+                    text: "Please take the teleporter and get out of here. You have insulted me beyond words.",
+                    speaker: "Stupidius"
                 ));
 
                 Game.GotButtonPart = true;
                 toePart = 1;
+
+                await SpaceshipPart(textbox);
             }
             else
             {
@@ -237,6 +291,36 @@ public class TalkTrigger : MonoBehaviour
             ));
 
             FindObjectsOfType<TicTacToeTile>().ToList().ForEach(t => t.Ready = true);
+        }
+    }
+
+    async Task SpaceshipPart(TextBox textbox)
+    {
+        if (Game.GotArtistPart && Game.GotButtonPart && Game.GotCowPart)
+        {
+            await Dialogue.Next(textbox, new TextBoxModel(
+                text: "(Got the spaceship part!)"
+            ));
+
+            await Dialogue.End(textbox, new TextBoxModel(
+                text: "(It looks like you have everything you need, better return to you spaceship.)"
+            ));
+        }
+        else
+        {
+            int count = 0;
+
+            if (Game.GotArtistPart) count++;
+            if (Game.GotButtonPart) count++;
+            if (Game.GotCowPart) count++;
+
+            await Dialogue.Next(textbox, new TextBoxModel(
+                text: "(Got the spaceship part!)"
+            ));
+
+            await Dialogue.End(textbox, new TextBoxModel(
+                text: $"(It feels like there are {count} more you need)"
+            ));
         }
     }
 }
