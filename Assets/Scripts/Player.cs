@@ -6,20 +6,21 @@ public class Player : MonoBehaviour
 {
     public float ThrustPower = 80;
     public float Power = 50;
+    public float RotationPower = 50;
     public float MaxThrust = 2;
     public float ThrustRegen = 2;
     public float Thrust { get; private set; }
     public Vector3? Checkpoint { get; set; }
-    public LayerMask collisionMask;
-
-    private Vector3 startPosition;
-
-    private float thrustRegenerateCooldownDuration = 2f;
-    private float thrustRegenerateCooldown = 0;
-    private float max = 10;
+    public float MaxSpeed = 8;
+    public LayerMask CollisionMask;
 
     public bool Paused { get; private set; } = false;
 
+    private float thrustRegenerateCooldownDuration = 10f;
+    private float thrustRegenerateCooldown = 0;
+
+
+    private Vector3 startPosition;
     Rigidbody rigidbody;
 
     public void Pause()
@@ -41,15 +42,15 @@ public class Player : MonoBehaviour
 
     void Update()
     {       
-        bool hit = Physics.Raycast(transform.position, Vector3.down, 1f, collisionMask);
+        bool hit = Physics.Raycast(transform.position, Vector3.down, 1f, CollisionMask);
         if (hit)
         {
             thrustRegenerateCooldown = 0;
         }
         rigidbody.velocity = new Vector3(
-            Mathf.Sign(rigidbody.velocity.x) * Mathf.Min(Mathf.Abs(rigidbody.velocity.x), max),
-            Mathf.Sign(rigidbody.velocity.y) * Mathf.Min(Mathf.Abs(rigidbody.velocity.y), max),
-            Mathf.Sign(rigidbody.velocity.z) * Mathf.Min(Mathf.Abs(rigidbody.velocity.z), max)
+            Mathf.Sign(rigidbody.velocity.x) * Mathf.Min(Mathf.Abs(rigidbody.velocity.x), MaxSpeed),
+            Mathf.Sign(rigidbody.velocity.y) * Mathf.Min(Mathf.Abs(rigidbody.velocity.y), MaxSpeed),
+            Mathf.Sign(rigidbody.velocity.z) * Mathf.Min(Mathf.Abs(rigidbody.velocity.z), MaxSpeed)
         );
 
         if (Paused) 
@@ -86,21 +87,25 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow))
         {
             rigidbody.AddForce(new Vector3(0, 0, Power * Time.deltaTime));
+            rigidbody.AddTorque(new Vector3(1, 0, 0) * RotationPower * Time.deltaTime);
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             rigidbody.AddForce(new Vector3(-Power * Time.deltaTime, 0, 0));
+            rigidbody.AddTorque(new Vector3(0, 0, 1) * RotationPower * Time.deltaTime);
         }
 
          if (Input.GetKey(KeyCode.DownArrow))
         {
             rigidbody.AddForce(new Vector3(0, 0, -Power * Time.deltaTime));
+            rigidbody.AddTorque(new Vector3(-1, 0, 0) * RotationPower * Time.deltaTime);
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
             rigidbody.AddForce(new Vector3(Power * Time.deltaTime, 0, 0));
+            rigidbody.AddTorque(new Vector3(0, 0, -1) * RotationPower * Time.deltaTime);
         }
     }
 

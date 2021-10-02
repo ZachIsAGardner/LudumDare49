@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Game : SingleInstance<Game>
 {
     public static bool IsPaused = false;
     public static bool IsTransitioning = false;
+    public static bool GotCowPart = false;
+    public static bool GotButtonPart = false;
+    public static bool GotBossPart = false;
+
+    private Image cowPartImage;
+    private Image bossPartImage;
+    private Image buttonPartImage;
 
     public static GameObject Dynamic
     {
@@ -32,6 +40,24 @@ public class Game : SingleInstance<Game>
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
+        }
+
+        if (GotCowPart)
+        {
+            cowPartImage = cowPartImage ?? GameObject.Find("PartOne").GetComponentInChildren<Image>();
+            cowPartImage.color = Color.white;
+        }
+
+        if (GotBossPart)
+        {
+            bossPartImage = bossPartImage ?? GameObject.Find("PartTwo").GetComponentInChildren<Image>();
+            bossPartImage.color = Color.white;
+        }
+
+        if (GotButtonPart)
+        {
+            buttonPartImage = buttonPartImage ?? GameObject.Find("PartThree").GetComponentInChildren<Image>();
+            buttonPartImage.color = Color.white;
         }
     }
 

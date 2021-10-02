@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1979196141845822144}
   - component: {fileID: 1979196141845822149}
   - component: {fileID: 1979196141845822150}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 1979196142036382569}
   - component: {fileID: 1979196142036382574}
   - component: {fileID: 1979196142036382575}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 1979196142288633769}
   - component: {fileID: 1979196142288633774}
   - component: {fileID: 1979196142288633775}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 1979196142626495541}
   - component: {fileID: 1979196142626495499}
   - component: {fileID: 1979196142626495540}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 1979196142976968621}
   - component: {fileID: 1979196142976968608}
   - component: {fileID: 1979196142976968609}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979196142976968622}
-  m_LocalRotation: {x: -0.08646281, y: -0.9841875, z: -0.009825884, w: 0.1542812}
+  m_LocalRotation: {x: -0.086463235, y: -0.9841875, z: -0.009828603, w: 0.15428089}
   m_LocalPosition: {x: -2.52, y: 1.02, z: -0.46408698}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -371,7 +371,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979196142976968622}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 34fffea84a8080d4ab2fda1f8ed148a6, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -417,9 +417,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854ad6eea2710cc4c923494c07bbb690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Power: 850
+  ThrustPower: 800
+  Power: 400
+  RotationPower: 50
   MaxThrust: 2
   ThrustRegen: 2
+  MaxSpeed: 8
+  CollisionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &1979196143029437307
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +437,7 @@ GameObject:
   - component: {fileID: 1979196143029437306}
   - component: {fileID: 1979196143029437311}
   - component: {fileID: 1979196143029437304}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +518,7 @@ GameObject:
   - component: {fileID: 1979196143315085757}
   - component: {fileID: 1979196143315085746}
   - component: {fileID: 1979196143315085747}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}

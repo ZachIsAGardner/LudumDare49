@@ -26,19 +26,17 @@ NOTES
 TODO
 
 DOING
-- meet person dialogue
 
 LATER
-- oh no im trapped dialogue
 - title screen
-- teach controls
 - intro
-- cattle puzzle
 - fight puzzle
 - tic tac toe puzzle
 - end screen
 
 DONE
+- cattle puzzle
+- meet person dialogue
 - lava
 - checkpoint
 
