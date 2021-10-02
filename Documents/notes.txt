@@ -1,0 +1,170 @@
+TOOLS
+- Unity
+- Vs Code
+- Aseprite
+- LMMS
+- Audacity
+- GitHub
+- OBS
+- 
+
+============
+
+NOTES
+
+0.0125 = 16
+0.025 = 32
+0.05 = 64
+0.1 = 128
+0.2 = 256
+0.4 = 512
+0.8 = 1024
+1.6 = 2048
+
+============
+
+TODO
+
+DOING
+- meet person dialogue
+
+LATER
+- oh no im trapped dialogue
+- title screen
+- teach controls
+- intro
+- cattle puzzle
+- fight puzzle
+- tic tac toe puzzle
+- end screen
+
+DONE
+- lava
+- checkpoint
+
+============
+
+THEME
+
+You are in a space ship
+"I sure love flying my spaceship. I sure hope nothing unstable happens!"
+Explosion
+Zoom In
+"Uh Oh!"
+Show the ship crashing into a planet
+
+"Wow! This sucks! Maybe someone can help me fix this thing."
+"I'm gonna need 3 things: A phantom carborenginator, A slinko phunkin pop, and a battery."
+Learn the controls
+Arrow Keys to move
+Space bar to jump and float
+Space bar to talk
+
+You meet someone they tell you they'll that they heard other people havin those things
+
+UP
+Someone wants you to heard their alien cattle for the carbo
+
+LEFT
+You open a door with a big circle handle
+Somone wants to watch you to help them with a puzzle and they'll give you a pop thing
+
+RIGHT
+You beat up a guy for his battery
+
+You return to your ship with newfound respect or something
+
+THE END
+
+
+
+
+
+
+
+
+
+
+
+============
+
+
+
+
+
+
+
+
+
+unstable
+- unpredictable
+- erratic
+- dizzy
+- fragile
+- temperamental
+- changing
+- volatile
+- variable
+- moving
+- teetering
+- slippery
+- crooked
+- prone to failure
+- random
+- not consistent
+- weather
+- economy
+- people
+- a jar of pickles
+- planned obselence
+
+- you are in a space ship and then you crash land on a planet because the spaceship is unstable, 
+you must talk with the residents and maybe they'll help you fix your spaceship
+- you are a technician on a spcae ship and you gotta fix the engine core, or else explode! :O
+    - puzzles
+    - you got a space ship wand for the fixins
+    - time limit
+    - you chat with other aliums
+    - lots of explosions
+    - no action, just puzzles
+- you are on an unstable spaceship, because the captain has become unstable and you need to help him out
+- email database
+- you are a space adventurer and you are on an unstable planet, you chat and encounter the residents on your quest to talk to a guy
+- dice roll
+- nature
+- you have to use a tool but it keeps breaking :(
+- nothing lasts so you have to keep using random things that are around you
+- a level based platformer where every level you have a different moveset
+- you have to fix things that are unstable
+- you play as a jar of pickles, so much as a little dent on you explode! :(
+- every x seconds you get a random powerup/ the controls kinda change
+    - you are a mailman and you have to deliver you mail, but then an evil wizard casts a spell on you and your body keeps changing randomly!
+- you keep getting bigger over time 
+- you have to carry something from begining to end and its really fragile
+- broken chairs
+    - platformer where you jump around on furniture and its all rickety
+    - a thing where you run around and break stuff
+- a banana balancing on another banana
+- chemistry
+    - volatile potions
+    - you play as chemist making things, making combinations
+        - you run around finding stuff and people and you ask would you like to be combined with another thing??
+        - 
+- you are a warrior and your sword is magical, the thing is is keeps changing in length randomly. wow!
+- getting over it
+- crappy controls
+- you are a wall street person and you are a victim of the economical, a monster
+- domino effect
+- a platformer where everything is always falling
+- a game where you guess stuff
+- you play as an angry person
+- a balancing game
+- a thing where you run around and you're all dizzy
+- emotionally unstable
+- combining things
+- mountain
+    - mountain goat
+- a house that is not structurably sound
+- slippery frog
+
+---
