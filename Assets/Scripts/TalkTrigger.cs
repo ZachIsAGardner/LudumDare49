@@ -195,7 +195,19 @@ public class TalkTrigger : MonoBehaviour
     {
         Paper paper = FindObjectOfType<Paper>();
 
-        if (paper.Pixels.Count() > 150 || Game.GotArtistPart)
+        if (Game.GotArtistPart)
+        {
+            TextBox textBox = await Dialogue.Begin(new TextBoxModel(
+                text: "I will put your drawing up on my fridge.",
+                speaker: "Fartist"
+            ));
+
+            await Dialogue.End(textBox, new TextBoxModel(
+               text: "I promise!",
+               speaker: "Fartist"
+           ));
+        }
+        else if (paper.Pixels.Count() > 150)
         {
             TextBox textBox = await Dialogue.Begin(new TextBoxModel(
                 text: "Wow I love your drawing!",

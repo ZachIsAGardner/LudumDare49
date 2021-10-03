@@ -50,9 +50,22 @@ public class Game : SingleInstance<Game>
 
     void Update()
     {
+
         if (Input.GetKey(KeyCode.Escape))
         {
            _ = Quit();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (!Screen.fullScreen)
+            {
+                Screen.SetResolution(1920, 1080, true);
+            }
+            else
+            {
+                Screen.SetResolution(1280, 720, false);
+            }
         }
 
         if (GotCowPart)
