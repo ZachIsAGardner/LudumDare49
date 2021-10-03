@@ -4,5 +4,5 @@
 
     public static readonly float MUSIC_VOLUME = 0.5f;
     public static readonly float CRAWL_TIME = 0.025f;
-    public static readonly string TEXT_TONE = "TextTone";
+    public static readonly string TEXT_TONE = "Talk";
 }

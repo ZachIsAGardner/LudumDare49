@@ -14,6 +14,7 @@ public class TextBox : MonoBehaviour
     [SerializeField] private Image nextImage;
 
     private string displayedText = "";
+    private float waitToSkip = 0;
 
     /// <summary>
     /// Whether or not the text box is currently crawling text.
@@ -54,7 +55,9 @@ public class TextBox : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Space))
+        waitToSkip -= Time.deltaTime;
+
+        if (waitToSkip <= 0 && (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Space)))
             SkipToEnd = true;
 
         if (textProComponent)
@@ -133,6 +136,7 @@ public class TextBox : MonoBehaviour
     /// </summary>
     public async Task ExecuteAsync()
     {
+        waitToSkip = 0.125f;
         SkipToEnd = false;
 
         if (speakerProComponent != null && !String.IsNullOrWhiteSpace(Speaker))
@@ -219,7 +223,7 @@ public class TextBox : MonoBehaviour
 
                     if (Tone != null && toneInterval <= 0)
                     {
-                        Sound.Play(Tone, true, 0.5f);
+                        Sound.Play(Tone, true, 0.25f);
                         toneInterval = ToneIntervalMax;
                     }
 
@@ -234,7 +238,7 @@ public class TextBox : MonoBehaviour
 
             if (Tone != null && toneInterval <= 0)
             {
-                Sound.Play(Tone, true, 0.5f);
+                Sound.Play(Tone, true, 0.25f);
                 toneInterval = ToneIntervalMax;
             }
 

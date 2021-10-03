@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public float Thrust { get; private set; }
     public Vector3? Checkpoint { get; set; }
     public float MaxSpeed = 8;
+    public float MaxFallSpeed = 16;
     public LayerMask CollisionMask;
 
     public bool Paused { get; private set; } = false;
@@ -39,13 +40,13 @@ public class Player : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
-        rigidbody = GetComponent<Rigidbody>();    
+        rigidbody = GetComponent<Rigidbody>();
         effects = GetComponentsInChildren<ParticleSystem>().ToList();
         effects.ForEach(e => e.Stop());
     }
 
     void Update()
-    {       
+    {
         bool hit = Physics.Raycast(transform.position, Vector3.down, 2f, CollisionMask);
         if (hit)
         {
@@ -53,11 +54,11 @@ public class Player : MonoBehaviour
         }
         rigidbody.velocity = new Vector3(
             Mathf.Sign(rigidbody.velocity.x) * Mathf.Min(Mathf.Abs(rigidbody.velocity.x), MaxSpeed),
-            Mathf.Sign(rigidbody.velocity.y) * Mathf.Min(Mathf.Abs(rigidbody.velocity.y), MaxSpeed),
+            Mathf.Sign(rigidbody.velocity.y) * Mathf.Min(Mathf.Abs(rigidbody.velocity.y), MaxFallSpeed),
             Mathf.Sign(rigidbody.velocity.z) * Mathf.Min(Mathf.Abs(rigidbody.velocity.z), MaxSpeed)
         );
 
-        if (Paused) 
+        if (Paused)
         {
             rigidbody.velocity = Vector3.zero;
             return;
@@ -78,15 +79,34 @@ public class Player : MonoBehaviour
             Thrust -= Time.deltaTime;
             thrustRegenerateCooldown = thrustRegenerateCooldownDuration;
             effects.ForEach(e => e.Play());
+            Sound.Play("Jetpack", false, 0.1f, true);
         }
         else if (thrustRegenerateCooldown <= 0)
         {
+            var audio = GameObject.Find("Jetpack")?.GetComponent<AudioSource>();
+            if (audio != null)
+            {
+                audio.volume -= Time.deltaTime;
+                if (audio.volume <= 0)
+                {
+                    audio.Stop();
+                }
+            }
             effects.ForEach(e => e.Stop());
             Thrust += ThrustRegen * Time.deltaTime * ((hit) ? 4 : 1);
             if (Thrust >= MaxThrust) Thrust = MaxThrust;
         }
         else
         {
+            var audio = GameObject.Find("Jetpack")?.GetComponent<AudioSource>();
+            if (audio != null)
+            {
+                audio.volume -= Time.deltaTime;
+                if (audio.volume <= 0)
+                {
+                    audio.Stop();
+                }
+            }
             effects.ForEach(e => e.Stop());
 
             thrustRegenerateCooldown -= Time.deltaTime;
@@ -104,7 +124,7 @@ public class Player : MonoBehaviour
             rigidbody.AddTorque(new Vector3(0, 0, 1) * RotationPower * Time.deltaTime);
         }
 
-         if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             rigidbody.AddForce(new Vector3(0, 0, -Power * Time.deltaTime));
             rigidbody.AddTorque(new Vector3(-1, 0, 0) * RotationPower * Time.deltaTime);
@@ -123,6 +143,11 @@ public class Player : MonoBehaviour
         {
             Restart();
         }
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        Sound.Play("Bump 1", true, 0.2f, false);
     }
 
     void Restart()

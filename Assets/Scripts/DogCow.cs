@@ -21,6 +21,7 @@ public class DogCow : MonoBehaviour
         {
             timer = Random.Range(1, 10);
             rigidbody.AddForce(new Vector3(0, Random.Range(50, 100), 0));
+            Sound.Play("CowJump", false, 0.25f, false, 1, transform.position, Random.Range(0.5f, 1.5f));
         }
     }
 }

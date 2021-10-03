@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class End : MonoBehaviour
 {
+    void Start()
+    {
+        Song.Play("End");
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))

@@ -99,6 +99,9 @@ public class TalkTrigger : MonoBehaviour
             case "Artist":
                 await Artist();
                 break;
+            case "Shadow":
+                await Shadow();
+                break;
             default:
                 await DefaultTalk();
                 break;
@@ -125,7 +128,7 @@ public class TalkTrigger : MonoBehaviour
         ));
 
         await Dialogue.Next(textBox, new TextBoxModel(
-            text: "My friends are always talking about cool they are, maybe they can help you fix it.",
+            text: "My friends are always talking about how cool they are, maybe they can help you fix it.",
             speaker: "Alium"
         ));
 
@@ -239,7 +242,7 @@ public class TalkTrigger : MonoBehaviour
         else
         {
             await Dialogue.Single(new TextBoxModel(
-                text: $"Looks like you are missing some spaceship parts."
+                text: $"(Looks like you are missing some spaceship parts.)"
             ));
         }
     }
@@ -298,10 +301,29 @@ public class TalkTrigger : MonoBehaviour
         }
     }
 
+    async Task Shadow()
+    {
+        var textbox = await Dialogue.Begin(new TextBoxModel(
+            text: "I heard that when you're high in the air, it's really helpful to look at your shadow.",
+            speaker: "Shadow"
+        ));
+
+        await Dialogue.Next(textbox, new TextBoxModel(
+            text: "It goes straight down, so you'll know where you'll land.",
+            speaker: "Shadow"
+        ));
+
+        await Dialogue.End(textbox, new TextBoxModel(
+           text: "Wow!",
+           speaker: "Shadow"
+       ));
+    }
+
     async Task SpaceshipPart(TextBox textbox)
     {
         if (Game.GotArtistPart && Game.GotButtonPart && Game.GotCowPart)
         {
+            Sound.Play("Win", true, 0.5f, false, 0, null, 1.5f);
             await Dialogue.Next(textbox, new TextBoxModel(
                 text: "(Got the spaceship part!)"
             ));
@@ -318,12 +340,13 @@ public class TalkTrigger : MonoBehaviour
             if (Game.GotButtonPart) count--;
             if (Game.GotCowPart) count--;
 
+            Sound.Play("Win", true, 0.5f, false, 0, null, 1.25f);
             await Dialogue.Next(textbox, new TextBoxModel(
                 text: "(Got the spaceship part!)"
             ));
 
             await Dialogue.End(textbox, new TextBoxModel(
-                text: $"(It feels like there are {count} more you need)"
+                text: $"(It feels like there {(count == 1 ? "is" : "are")} {count} more you need)"
             ));
         }
     }

@@ -10,19 +10,22 @@ public class Introduction : MonoBehaviour
     void Start()
     {
         _ = Cutscene();
+        Song.Play("Introduction");
     }
 
     async Task Cutscene()
     {
         Animator.SetInteger("State", 1);
 
+        await new WaitForSeconds(1f);
+
         var textbox = await Dialogue.Begin(new TextBoxModel(
-            text: "I sure do love flying in space.",
+            text: "I love flying in space.",
             speaker: "Boxelda"
         ));
 
         await Dialogue.Next(textbox, new TextBoxModel(
-            text: "I sure hope nothing Unstable happens.",
+            text: "I sure hope nothing <color=#ff8000>Unstable</color> happens.",
             speaker: "Boxelda"
         ));
 

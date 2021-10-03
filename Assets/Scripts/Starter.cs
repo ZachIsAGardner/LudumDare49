@@ -6,6 +6,11 @@ public class Starter : MonoBehaviour
 {
     public SceneTransition Transition;
 
+    void Start()
+    {
+        Song.Play("Title");
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
