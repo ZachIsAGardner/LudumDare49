@@ -11,7 +11,6 @@ public class Dialogue : SingleInstance<Dialogue>
     {
         if (instance != null) 
         {
-            print("already do");
             Destroy(instance.gameObject);
         }
 

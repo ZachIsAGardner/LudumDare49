@@ -10,7 +10,7 @@ public class Starter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _ = Game.LoadAsync("Test", Transition);
+            _ = Game.LoadAsync("Introduction", Transition);
         }
     }
 }

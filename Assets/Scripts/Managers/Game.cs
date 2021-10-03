@@ -35,11 +35,24 @@ public class Game : SingleInstance<Game>
     private SceneTransition sceneTransitionInstance;
     private static int spawnPoint = 0;
 
+     public static async Task Quit()
+    {
+        GameObject transition = Prefabs.Get("FadeSceneTransition");
+        SceneTransition transitionInstance = Instantiate(transition).GetComponent<SceneTransition>();
+        transitionInstance.Out();
+
+        while (!transitionInstance.DidReachHalfway)
+        {
+            await new WaitForUpdate();
+        }
+        Application.Quit();
+    }
+
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            Application.Quit();
+           _ = Quit();
         }
 
         if (GotCowPart)

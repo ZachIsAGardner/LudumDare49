@@ -417,12 +417,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854ad6eea2710cc4c923494c07bbb690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThrustPower: 800
-  Power: 400
+  ThrustPower: 750
+  Power: 500
   RotationPower: 50
   MaxThrust: 2
   ThrustRegen: 2
-  MaxSpeed: 8
+  MaxSpeed: 6.75
   CollisionMask:
     serializedVersion: 2
     m_Bits: 4294967295

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     private float thrustRegenerateCooldownDuration = 10f;
     private float thrustRegenerateCooldown = 0;
 
+    private List<ParticleSystem> effects;
 
     private Vector3 startPosition;
     Rigidbody rigidbody;
@@ -38,6 +40,8 @@ public class Player : MonoBehaviour
     {
         startPosition = transform.position;
         rigidbody = GetComponent<Rigidbody>();    
+        effects = GetComponentsInChildren<ParticleSystem>().ToList();
+        effects.ForEach(e => e.Stop());
     }
 
     void Update()
@@ -73,14 +77,18 @@ public class Player : MonoBehaviour
             rigidbody.AddForce(new Vector3(0, ThrustPower * Time.deltaTime, 0));
             Thrust -= Time.deltaTime;
             thrustRegenerateCooldown = thrustRegenerateCooldownDuration;
+            effects.ForEach(e => e.Play());
         }
         else if (thrustRegenerateCooldown <= 0)
         {
+            effects.ForEach(e => e.Stop());
             Thrust += ThrustRegen * Time.deltaTime * ((hit) ? 4 : 1);
             if (Thrust >= MaxThrust) Thrust = MaxThrust;
         }
         else
         {
+            effects.ForEach(e => e.Stop());
+
             thrustRegenerateCooldown -= Time.deltaTime;
         }
 

@@ -15,8 +15,11 @@ public class TalkTrigger : MonoBehaviour
 
     public string Key = "";
 
-    void Start()
+    GameObject teleporter = null;
+
+    void Awake()
     {
+        teleporter = FindObjectsOfType<Teleporter>().ToList().Find(t => !t.Exit).gameObject;
         prompt = GameObject.FindGameObjectWithTag("TalkPrompt").GetComponent<RectTransform>();
     }
 
@@ -267,6 +270,7 @@ public class TalkTrigger : MonoBehaviour
 
                 Game.GotButtonPart = true;
                 toePart = 1;
+                teleporter.SetActive(true);
 
                 await SpaceshipPart(textbox);
             }
@@ -308,11 +312,11 @@ public class TalkTrigger : MonoBehaviour
         }
         else
         {
-            int count = 0;
+            int count = 3;
 
-            if (Game.GotArtistPart) count++;
-            if (Game.GotButtonPart) count++;
-            if (Game.GotCowPart) count++;
+            if (Game.GotArtistPart) count--;
+            if (Game.GotButtonPart) count--;
+            if (Game.GotCowPart) count--;
 
             await Dialogue.Next(textbox, new TextBoxModel(
                 text: "(Got the spaceship part!)"

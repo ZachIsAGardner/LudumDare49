@@ -32,7 +32,6 @@ public class TicTacToe : MonoBehaviour
 
             if (playerWon)
             {
-                Teleporter.gameObject.SetActive(true);
                 PlayerVictory = true;
                 tiles.ForEach(t => t.Ready = false);
                 tiles.ForEach(t => t.Circle.GetComponent<MeshRenderer>().material = Win);
@@ -67,7 +66,8 @@ public class TicTacToe : MonoBehaviour
             {
                 tiles.ForEach(t => t.Reset());
                 tiles.ForEach(t => t.Ready = true);
-                tiles.ForEach(t => t.GetComponent<MeshRenderer>().material = Normal);
+                tiles.ForEach(t => t.Circle.GetComponent<MeshRenderer>().material = Normal);
+                tiles.ForEach(t => t.Cross.GetComponent<MeshRenderer>().material = Normal);
             });
         }
     }

@@ -24,21 +24,16 @@ NOTES
 ============
 
 TODO
+- thrust sfx
+- bump sfx
+- tic tac toe sfx
+- draw sfx
+- cowdog sfx
+- textone sfx
 
-DOING
-
-LATER
-- title screen
-- intro
-- fight puzzle
-- tic tac toe puzzle
-- end screen
-
-DONE
-- cattle puzzle
-- meet person dialogue
-- lava
-- checkpoint
+- title song
+- main song
+- end song
 
 ============
 

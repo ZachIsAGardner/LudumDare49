@@ -54,7 +54,7 @@ public class TextBox : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Space))
             SkipToEnd = true;
 
         if (textProComponent)
@@ -256,7 +256,7 @@ public class TextBox : MonoBehaviour
             if (nextImage != null) nextImage.enabled = true;
             while(true) 
             {
-                if (Input.GetKeyDown(KeyCode.C)) break;
+                if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Space)) break;
                 await new WaitForUpdate();
             }
         }
